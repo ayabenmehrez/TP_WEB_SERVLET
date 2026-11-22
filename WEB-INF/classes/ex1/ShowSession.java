@@ -24,6 +24,10 @@ public class ShowSession extends HttpServlet {
         String  birthDate   = (String)  session.getAttribute("birthDate");
         Integer visitCount  = (Integer) session.getAttribute("visitCount");
 
+        // Récupération du nombre de sessions actives
+        Integer activeSessions = (Integer) getServletContext().getAttribute("activeSessions");
+        if (activeSessions == null) activeSessions = 0;
+
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
@@ -50,6 +54,13 @@ public class ShowSession extends HttpServlet {
         out.println("button:hover{background:#005f99;}");
         out.println(".count{color:#6d8b9c;font-size:0.9rem;margin-top:1rem;}");
         out.println("a{color:#0077be;font-weight:600;text-decoration:none;}");
+        
+        // 👇 STYLE DU BOUTON DE DÉCONNEXION 👇
+        out.println(".btn-logout{display:inline-block;margin-top:1.5rem;padding:0.7rem 1.8rem;"
+                  + "background-color:#e74c3c;color:#fff;border-radius:40px;"
+                  + "font-weight:600;transition:0.3s;text-decoration:none;}");
+        out.println(".btn-logout:hover{background-color:#c0392b;color:#fff;}");
+        
         out.println("</style></head><body>");
         out.println("<div class='card'>");
 
@@ -88,8 +99,17 @@ public class ShowSession extends HttpServlet {
             out.println("There are <strong>" + days + "</strong> days to your birthday. 🎂");
             out.println("</p>");
             out.println("<p class='count'>Nombre de visites : " + visitCount + "</p>");
+            
             out.println("<p><a href='ShowSession'>🔄 Rafraîchir</a></p>");
+            
+            // 👇 LE BOUTON DE DÉCONNEXION AJOUTÉ ICI 👇
+            out.println("<a href='LogoutServlet' class='btn-logout'>🚪 Se déconnecter</a>");
         }
+
+        // ─── Affichage du nombre de sessions actives ───
+        out.println("<p class='count' style='font-weight:bold; color:#0077be; margin-top:1.5rem;'>");
+        out.println("👥 Sessions actives : " + activeSessions);
+        out.println("</p>");
 
         out.println("</div></body></html>");
     }

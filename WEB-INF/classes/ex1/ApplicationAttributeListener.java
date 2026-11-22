@@ -1,0 +1,25 @@
+package ex1;
+
+import javax.servlet.ServletContextAttributeEvent;
+import javax.servlet.ServletContextAttributeListener;
+import javax.servlet.annotation.WebListener;
+
+@WebListener
+public class ApplicationAttributeListener implements ServletContextAttributeListener {
+
+    @Override
+    public void attributeAdded(ServletContextAttributeEvent event) {
+        System.out.println("🌐 [AppAttribute] AJOUT : " + event.getName() + " = " + event.getValue());
+    }
+
+    @Override
+    public void attributeReplaced(ServletContextAttributeEvent event) {
+        System.out.println("🌐 [AppAttribute] REMPLACÉ : " + event.getName()
+                + " (ancienne valeur = " + event.getValue() + ")");
+    }
+
+    @Override
+    public void attributeRemoved(ServletContextAttributeEvent event) {
+        System.out.println("🌐 [AppAttribute] SUPPRIMÉ : " + event.getName());
+    }
+}
