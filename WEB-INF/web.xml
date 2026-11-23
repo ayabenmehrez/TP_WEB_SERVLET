@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+                             http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0"
+         metadata-complete="true"
+       >
+
+    <display-name>tp1</display-name>
+
+    <!-- ========================================== -->
+    <!-- 1. CONFIGURATION DES FILTRES               -->
+    <!-- ========================================== -->
+    <filter>
+        <filter-name>LoggingFilter</filter-name>
+        <filter-class>ex1.LoggingFilter</filter-class>
+        <init-param>
+            <param-name>logPrefix</param-name>
+            <param-value>[MON_PREFIXE_TP1]</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>ex1.SecurityFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>LoggingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/ListItems</url-pattern>
+    </filter-mapping>
+
+    <!-- ========================================== -->
+    <!-- 2. CONFIGURATION DES LISTENERS             -->
+    <!-- (Doit être AVANT les servlets)             -->
+    <!-- ========================================== -->
+    <listener>
+        <listener-class>ex1.ApplicationListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>ex1.ActiveSessionListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>ex1.RequestListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>ex1.SessionAttributeListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>ex1.ApplicationAttributeListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>ex1.RequestAttributeListener</listener-class>
+    </listener>
+
+
+    <!-- ========================================== -->
+    <!-- 3. CONFIGURATION DES SERVLETS              -->
+    <!-- ========================================== -->
+    
+    <!-- Servlet 1 : firstservlet -->
+    <servlet>
+        <servlet-name>FormServlet</servlet-name>
+        <servlet-class>ex1.firstservlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormServlet</servlet-name>
+        <url-pattern>/FormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FormServlet</servlet-name>
+        <url-pattern>/Form_Servlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet 2 : ReadCookie -->
+    <servlet>
+        <servlet-name>ReadCookie</servlet-name>
+        <servlet-class>ex1.ReadCookie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReadCookie</servlet-name>
+        <url-pattern>/ReadCookie</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet 3 : VisitCounter -->
+    <servlet>
+        <servlet-name>VisitCounter</servlet-name>
+        <servlet-class>ex1.VisitCounter</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VisitCounter</servlet-name>
+        <url-pattern>/VisitCounter</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet 4 : ShowSession -->
+    <servlet>
+        <servlet-name>ShowSession</servlet-name>
+        <servlet-class>ex1.ShowSession</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowSession</servlet-name>
+        <url-pattern>/ShowSession</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet 5 : ListItems -->
+    <servlet>
+        <servlet-name>ListItems</servlet-name>
+        <servlet-class>ex1.ListItems</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListItems</servlet-name>
+        <url-pattern>/ListItems</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet 6 : LoginServlet -->
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>ex1.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet 7 : SessionAttributeDemo -->
+    <servlet>
+        <servlet-name>SessionAttributeDemo</servlet-name>
+        <servlet-class>ex1.SessionAttributeDemo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionAttributeDemo</servlet-name>
+        <url-pattern>/SessionAttributeDemo</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet de test pour ApplicationAttributeListener -->
+    <servlet>
+        <servlet-name>ContextAttributeDemo</servlet-name>
+        <servlet-class>ex1.ContextAttributeDemo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ContextAttributeDemo</servlet-name>
+        <url-pattern>/ContextAttributeDemo</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- Servlet de test pour RequestAttributeListener -->
+    <servlet>
+        <servlet-name>RequestAttributeDemo</servlet-name>
+        <servlet-class>ex1.RequestAttributeDemo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestAttributeDemo</servlet-name>
+        <url-pattern>/RequestAttributeDemo</url-pattern>
+    </servlet-mapping>
+
+
+
+     <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>ex1.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- ========================================== -->
+    <!-- 4. PAGE D'ACCUEIL                          -->
+    <!-- ========================================== -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>

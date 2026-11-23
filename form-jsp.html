@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire vers JavaBean</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 1.5rem; }
+        .card { background: #fff; border-radius: 24px; padding: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 100%; max-width: 500px; }
+        h2 { color: #2d3748; font-weight: 600; text-align: center; }
+        label { display: block; font-weight: 600; font-size: 0.85rem; color: #1a4b60; text-transform: uppercase; margin: 1rem 0 0.4rem; }
+        input[type=text] { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #cbdae3; border-radius: 12px; font-size: 1rem; box-sizing: border-box; }
+        .radio-group { display: flex; gap: 1.5rem; margin-top: 0.5rem; }
+        .radio-group label { text-transform: none; font-weight: 500; display: flex; align-items: center; gap: 0.4rem; margin: 0; cursor: pointer; }
+        button { background: #6366f1; color: #fff; border: none; padding: 0.9rem 2rem; font-size: 1rem; font-weight: 600; border-radius: 40px; cursor: pointer; margin-top: 1.5rem; width: 100%; transition: 0.3s; }
+        button:hover { background: #4f46e5; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>📝 Formulaire JavaBean</h2>
+        <!-- ⚠️ L'action pointe vers bean.jsp -->
+        <form action="bean.jsp" method="post">
+            <label for="firstName">Prénom</label>
+            <input type="text" id="firstName" name="firstName" required>
+
+            <label for="lastName">Nom</label>
+            <input type="text" id="lastName" name="lastName" required>
+
+            <label for="birthDay">Date de naissance</label>
+            <input type="text" id="birthDay" name="birthDay" placeholder="mm/dd/yyyy" required>
+
+            <label>Sexe</label>
+            <div class="radio-group">
+                <label><input type="radio" name="sex" value="F" required> Femme</label>
+                <label><input type="radio" name="sex" value="M" required> Homme</label>
+            </div>
+
+            <button type="submit">Envoyer au JSP</button>
+        </form>
+    </div>
+</body>
+</html>
